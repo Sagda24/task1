@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+// Function to check if a number is prime
+int is_prime(int num) {
+    if (num < 2) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+// Function to calculate sum of digits
+int sum_of_digits(int num) {
+    int sum = 0;
+    while (num != 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+// Function to find GCD using Euclidean algorithm
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Function to reverse a number
+int reverse_number(int num) {
+    int reversed = 0;
+    while (num != 0) {
+        reversed = reversed * 10 + num % 10;
+        num /= 10;
+    }
+    return reversed;
+}
+
+int main() {
+    int choice, num1, num2;
+    
+    printf("Choose a problem to solve:\n");
+    printf("1. Check Prime Number\n");
+    printf("2. Sum of Digits\n");
+    printf("3. Greatest Common Divisor (GCD)\n");
+    printf("4. Reverse a Number\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    
+    switch (choice) {
+        case 1:
+            printf("Enter a number: ");
+            scanf("%d", &num1);
+            if (is_prime(num1))
+                printf("%d is a prime number.\n", num1);
+            else
+                printf("%d is not a prime number.\n", num1);
+            break;
+        
+        case 2:
+            printf("Enter a number: ");
+            scanf("%d", &num1);
+            printf("Sum of digits: %d\n", sum_of_digits(num1));
+            break;
+        
+        case 3:
+            printf("Enter two numbers: ");
+            scanf("%d %d", &num1, &num2);
+            printf("GCD: %d\n", gcd(num1, num2));
+            break;
+        
+        case 4:
+            printf("Enter a number: ");
+            scanf("%d", &num1);
+            printf("Reversed number: %d\n", reverse_number(num1));
+            break;
+        
+        default:
+            printf("Invalid choice!\n");
+    }
+    
+    return 0;
+}
